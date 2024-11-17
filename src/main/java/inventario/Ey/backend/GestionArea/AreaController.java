@@ -59,6 +59,7 @@ public class AreaController {
 
     @GetMapping
     public ResponseEntity<List<Area>> getAllAreas() {
-        return new ResponseEntity<>(areaService.getAllAreas(), HttpStatus.OK);
+        List<Area> areas = areaService.getAllAreas();
+        return new ResponseEntity<>(areas, HttpStatus.OK);
     }
 }

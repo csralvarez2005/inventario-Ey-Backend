@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @Data
 public class FuncionarioDTO {
 
-    private Long id;
+    private Long funcionarioId;
     private String identificacion;
     private String nombreFuncionario;
     private String apellidoFuncionario;
@@ -19,6 +19,4 @@ public class FuncionarioDTO {
     private String estadoCivil;    // Se cambió a camelCase
     private String genero;         // Se cambió a camelCase
     private String tipoDocumento;
-
-
 }

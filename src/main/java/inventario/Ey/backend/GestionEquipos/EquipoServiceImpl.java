@@ -72,7 +72,7 @@ public class EquipoServiceImpl implements EquipoService{
 
     private EquipoDTO convertToDTO(Equipo equipo) {
         EquipoDTO dto = new EquipoDTO();
-        dto.setId(equipo.getId());
+        dto.setEquipoId(equipo.getEquipoId());
         dto.setNombre(equipo.getNombre());
         dto.setSerie(equipo.getSerie());
         dto.setModelo(equipo.getModelo());

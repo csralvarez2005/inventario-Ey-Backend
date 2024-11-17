@@ -1,10 +1,13 @@
 package inventario.Ey.backend.GestionEquipos;
 
+import inventario.Ey.backend.GestionAsignacionEquipos.AsignacionEquipo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "equipos")
@@ -14,7 +17,7 @@ public class Equipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long equipoId;
 
     @Column(unique = true, nullable = false)
     private String nombre;
@@ -35,4 +38,7 @@ public class Equipo {
     private String accesorios;
     private String utilizacion;
     private Double precio;
+
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AsignacionEquipo> asignaciones = new ArrayList<>();
 }

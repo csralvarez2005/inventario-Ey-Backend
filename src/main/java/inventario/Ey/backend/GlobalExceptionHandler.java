@@ -2,6 +2,7 @@ package inventario.Ey.backend;
 
 import inventario.Ey.backend.GestionEquipos.DuplicateEquipoNameException;
 import inventario.Ey.backend.GestionUsuarios.DuplicateIdentificacionException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,6 +25,20 @@ public class GlobalExceptionHandler {
         String message = "El funcionario con la identificación " + ex.getIdentificacion() + " ya existe.";
         ErrorResponse errorResponse = new ErrorResponse("DuplicateIdentificacionException", message);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // Manejar la excepción EntityNotFoundException (cuando no se encuentra la entidad)
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse("EntityNotFoundException", ex.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    // Manejar excepciones de violación de integridad de datos (como claves duplicadas)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse("DataIntegrityViolationException", "Violación de integridad de datos, probablemente clave duplicada.");
+        return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
     // Manejar excepciones generales

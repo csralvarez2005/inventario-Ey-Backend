@@ -1,10 +1,13 @@
 package inventario.Ey.backend.GestionUsuarios;
 
+import inventario.Ey.backend.GestionAsignacionEquipos.AsignacionEquipo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "funcionarios")
@@ -14,7 +17,7 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long funcionarioId;
     @Column(unique = true)
     private String identificacion;
     private String nombreFuncionario;
@@ -29,4 +32,7 @@ public class Funcionario {
     private String genero;
     private String TipoDocumento;
 
+    // Relación bidireccional con AsignacionEquipo
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AsignacionEquipo> asignaciones = new ArrayList<>();
 }
