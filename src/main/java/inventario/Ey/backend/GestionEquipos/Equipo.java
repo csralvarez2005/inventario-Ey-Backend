@@ -39,6 +39,5 @@ public class Equipo {
     private String utilizacion;
     private Double precio;
 
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AsignacionEquipo> asignaciones = new ArrayList<>();
+
 }

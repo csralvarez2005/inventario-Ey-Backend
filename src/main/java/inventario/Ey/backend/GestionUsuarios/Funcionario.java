@@ -32,7 +32,5 @@ public class Funcionario {
     private String genero;
     private String TipoDocumento;
 
-    // Relación bidireccional con AsignacionEquipo
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AsignacionEquipo> asignaciones = new ArrayList<>();
+
 }

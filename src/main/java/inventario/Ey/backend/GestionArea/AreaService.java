@@ -8,4 +8,7 @@ public interface AreaService {
     void deleteArea(Long id);
     Area getAreaById(Long id);
     List<Area> getAllAreas();
+
+
+    List<Area> getAreasOrderedByNombreDesc();
 }

@@ -51,4 +51,9 @@ public class AreaServiceImpl implements AreaService{
     public List<Area> getAllAreas() {
         return areaRepository.findAll();
     }
+
+    @Override
+    public List<Area> getAreasOrderedByNombreDesc() {
+        return areaRepository.findAllOrderedByNombreDesc();
+    }
 }

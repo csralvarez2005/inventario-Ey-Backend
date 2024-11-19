@@ -62,4 +62,11 @@ public class AreaController {
         List<Area> areas = areaService.getAllAreas();
         return new ResponseEntity<>(areas, HttpStatus.OK);
     }
+
+    // Nuevo endpoint
+    @GetMapping("/ordered")
+    public ResponseEntity<List<Area>> getAreasOrderedByNombreDesc() {
+        List<Area> areas = areaService.getAreasOrderedByNombreDesc();
+        return new ResponseEntity<>(areas, HttpStatus.OK);
+    }
 }
